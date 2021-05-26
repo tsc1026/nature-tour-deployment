@@ -105,7 +105,7 @@ reviewSchema.post('save', function(){
     //this 指向目前的 current review doc
     //this.constructor 就是 review Model, 有了它才可以用 calcAverageRatings()
     //this.tour 就是目前的 review doc 下的 tour id。 因為 this 指向目前的 review doc, 每個review doc 都存有其對應之 tour id, 我們在 review Model內有宣告過 tour 欄位
-    console.log('post this', this);
+    //console.log('post this', this);
     this.constructor.calcAverageRatings(this.tour);
 });
 
@@ -113,7 +113,7 @@ reviewSchema.post('save', function(){
 //findByIdAndUpdate, findByIdAndDelete
 reviewSchema.pre(/^findOneAnd/, async function(next){
     //this 指向 current query(不是current doc)
-    console.log('update this', this);
+    //console.log('update this', this);
     //為了要拿到current review doc, 所以用 this.findOne() 找出 current review doc。(findOne finds the first document that matches the query and returns it.)
     //拿到後將其當成一個 property 加到 this所指之物件上(current query)
     this.currentReview = await this.findOne();
@@ -126,8 +126,8 @@ reviewSchema.post(/^findOneAnd/, async function(next){
    //this.currentReview.constructor: 就是 reviewSchema
    //this.currentReview: 就是從上面傳過來 this.findOne(); 從資料庫找到之current doc
    //this.currentReview.tour: 就是目前此review所屬之tour id
-   console.log('this.currentReview',  this.currentReview);
-   console.log('this.currentReview.constructor',  this.currentReview.constructor);
+   //console.log('this.currentReview',  this.currentReview);
+   //console.log('this.currentReview.constructor',  this.currentReview.constructor);
    await this.currentReview.constructor.calcAverageRatings(this.currentReview.tour);
 });
 

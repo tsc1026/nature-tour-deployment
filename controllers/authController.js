@@ -126,7 +126,7 @@ exports.protect = async (req, res, next) => {
         //2). verifycation token
         //jwt.verify 可以比較step.1)的 token 跟 process.env.JWT_SECRET 是否相同, promisify 可以將比較結果弄成 promise 後回傳(所以需要await接)
         const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-        console.log(decoded); //{ id: '607b8191bd329a0c98512aa2', iat: 1618706834, exp: 1626482834 }
+        //console.log(decoded); //{ id: '607b8191bd329a0c98512aa2', iat: 1618706834, exp: 1626482834 }
         
         //3).check if user still exists(檢查user是否還存在資料庫內,有可能從db中刪除此帳號了)
         const freshUser = await User.findById(decoded.id); //用 token的userId 進去資料庫找user

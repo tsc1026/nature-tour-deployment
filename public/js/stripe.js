@@ -10,7 +10,7 @@ export const bookTour = async function(tourId){
         const session = await axios(
           `/api/v1/bookings/checkout-session/${tourId}`
         );
-        console.log(session);
+        //console.log(session);
     
         // 2) Create checkout form + chanre credit card(stripe會自動產生checkout page)
         //我們只需要提供 sesstion id 給 stripe 即可
